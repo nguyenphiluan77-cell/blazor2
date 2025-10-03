@@ -1,0 +1,9 @@
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.csproj.AssemblyReference.cache
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.AssemblyInfoInputs.cache
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.AssemblyInfo.cs
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.csproj.CoreCompileInputs.cache
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.MvcApplicationPartsAssemblyInfo.cs
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.MvcApplicationPartsAssemblyInfo.cache
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.RazorAssemblyInfo.cache
+D:\Blazor04\blazor2\obj\Debug\net9.0\blazor2.RazorAssemblyInfo.cs

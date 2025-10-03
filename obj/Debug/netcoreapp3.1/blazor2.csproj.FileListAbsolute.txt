@@ -1,0 +1,17 @@
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.csproj.AssemblyReference.cache
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.AssemblyInfoInputs.cache
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.AssemblyInfo.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.csproj.CoreCompileInputs.cache
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.MvcApplicationPartsAssemblyInfo.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.MvcApplicationPartsAssemblyInfo.cache
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.RazorComponent.input.cache
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\App.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Counter.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\FetchData.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Index.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\NavMenu.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\RazorDeclaration\_Imports.razor.g.cs
+D:\Blazor04\blazor2\obj\Debug\netcoreapp3.1\blazor2.RazorComponent.output.cache

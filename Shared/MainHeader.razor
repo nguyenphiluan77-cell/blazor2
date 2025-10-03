@@ -1,0 +1,24 @@
+@namespace blazor.Shared
+@* có thể không khai báo thì sẽ tự hiểu là *@
+
+@inherits LayoutComponentBase
+<header style="background-color: #f8f9fa; padding: 10px;" class="d-flex justfy-content-between align-items-center">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <NavLink class="nav-link " aria-current="page" href="/" ActiveClass="active" Match="NavLinkMatch.All">Home</NavLink>
+        </li>
+
+        <li class="nav-item">
+            <NavLink ActiveClass="active" Match="NavLinkMatch.Prefix" class="nav-link" href="/login">Login</NavLink>
+        </li>
+       <li class="nav-item">
+            <NavLink ActiveClass="active" Match="NavLinkMatch.Prefix" class="nav-link" href="/profile">profile</NavLink>
+        </li>
+        <li class="nav-item">
+            <NavLink ActiveClass="active" Match="NavLinkMatch.Prefix" class="nav-link" href="/Admin">Admin</NavLink>
+        </li>
+    </ul>
+</header>
+<section>
+@Body
+</section>
