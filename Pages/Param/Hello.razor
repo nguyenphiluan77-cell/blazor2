@@ -1,0 +1,17 @@
+@page "/hello"
+<h1>Hello</h1>
+@* HelloName có param là fullname *@
+<HelloName fullname="Phi Luận" />
+<HelloName fullname=" Nguyễn Văn A" >
+<p>Xin chào, xin chào</p>
+<p>Xin chào, xin chào</p>
+<p>Xin chào, xin chào</p>
+<p>Xin chào, xin chào</p>
+<p>Xin chào, xin chào</p>
+<p>Xin chào, xin chào</p>
+<Counter/>
+</HelloName>
+@* fullname=" Nguyễn Văn A được truyền xuống file con qua [Parameter]
+    public string fullName { get; set; } *@
+    @* <p>Xin chào, xin chào</p> được truyền xuống file con thông qua [Parameter]
+    public RenderFragment ChildContent { get; set; }  *@

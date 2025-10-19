@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@* @using Microsoft.AspNetCore.Components.Web, copy dòng này từ _imorts.razor thêm vào _Host.cshtml + <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/> (2) ở phía dưới trong _host.cshtml. để <PageTitle>ChangeCar</PageTitle> ở các component dược hoạt động  *@
 @namespace blazor.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -7,14 +9,25 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>blazor</title>
     <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    @* <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" /> *@
+    @* BS5 đời mới *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    @* link bắt đầu bằng css mà không phải băng wwwrot *@
     <link href="css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="blazor.styles.css">
+    @* bắt buộc gắn link blazor.styles.css . trong đó blazor là tên dự án.csproj. thì các css mới kết nối được với các component *@
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+    @* 2 *@
 </head>
+
 <body>
     <app>
         <component type="typeof(App)" render-mode="ServerPrerendered" />
@@ -30,7 +43,9 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-
+    @* JS bootstrap *@
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="_framework/blazor.server.js"></script>
 </body>
+
 </html>

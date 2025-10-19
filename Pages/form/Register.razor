@@ -1,0 +1,143 @@
+@page "/register"
+<PageTitle>Register</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3>Register Form</h3>
+            <EditForm Model="@user" OnvalidSubmit="HandleSubmit" OnInvalidSubmit="HandleError">
+            @* validSubmit: khi thỏa hết các điều kiện thì gọi hàm
+            InvalidSubmit: khi không thỏa hết các điều kiện thì gọi hàm *@
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+            @* <ValidationSummary style=""/> để gom thông báo trên web   *@
+            @* <DataAnnotationsValidator/> dòng này để cho các regex ở file userRegister.CS hoạt động *@
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" @bind="@user.Username" />
+                    <ValidationMessage For="@(()=>user.Username)"/>
+                    @* <ValidationMessage For="@(()=>user.Username)"/> dòng này có tác dụng nếu bỏ trống không điền, sẽ báo lỗi *@
+                    @* @bind="@user.Username dùng để kết nối với file UserRegister.cs để điền giá trị mặc định cho username*@
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="text" class="form-control" id="email" @bind="@user.Email" />
+                    <ValidationMessage For="@(()=>user.Email)"/>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" @bind="@user.Password" />
+                    <ValidationMessage For="@(()=>user.Password)"/>
+                </div>
+                <div class="mb-3">
+                    <p>Gender</p>
+                    <div class="form-check form-check-inline">
+                        <input id="nam" class="form-check-input" type="radio" name="gender" value="false"
+                            checked="@user.Gender.Equals(false)" @onchange="() => ChangeGender(false)" />
+                        <label for="nam" class="form-check-label">Nam</label>
+                    </div>
+                    @* thêm id=nam và for = nam. để khi nhấn vào nam thì sẽ tíck đc luôn. chứ k cần phải click đúng vào ô  *@
+                    @* nếu name ở nam và nữ cùng trùng tên là gender thì web chỉ chọn được nam hoặc nữ, nhưng nếu name khác nhau thì chọn đc 2 tên cùng lúc *@
+                    <div class="form-check form-check-inline">
+                        <input id="nu" class="form-check-input" value="true" checked="@user.Gender.Equals(true)"
+                            type="radio" name="gender" @onchange="() => ChangeGender(true)" />
+                        <label for="nu" class="form-check-label">Nữ</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">City</label>
+                    <select class="form-control" @bind="@user.City">
+                        <option value="Việt Nam">Việt Nam</option>
+                        <option value="Nhật Bản">Nhật Bản</option>
+                        <option value="Campuchia">Campuchia</option>
+                        
+                    </select>
+                    <ValidationMessage For="@(()=>user.City)"/>
+                </div>
+                <div class="mb-3">
+                    <p>Sở thích</p>
+                    @foreach (var hobby in allHobbies)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked="@user.Hobbies.Contains(hobby)"
+                                @onchange="(e) => ChangeHobby(hobby, e.Value)" />
+                            <label class="form-check-label">@hobby</label>
+                        </div>
+                    }
+                </div>
+                <div class="mb-3 form-check">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                </div>
+            </EditForm>
+        </div>
+        <div class="col-6">
+            <h3>Show thông tin</h3>
+            <p>Username: @user.Username</p>
+            <p>Email: @user.Email</p>
+            <p>Password: @user.Password</p>
+            <p>Gender: @user.Gender</p>
+            <p>City: @user.City</p>
+            <p>Sở thích: @string.Join(", ", user.Hobbies)</p>
+
+        </div>
+    </div>
+</div>
+@code {
+    private List<string> allHobbies = new List<string>()
+{
+"Ăn uống", "Ngủ", "Chơi game", "Du lịch"
+};
+    private UserRegisterViewModel user = new UserRegisterViewModel();
+    // *@ Hàm lưu thông tin *@
+    private void HandleSubmit()
+    {
+        // lưu thông tin
+        Console.WriteLine(@$"Username: {user.Username}, Email: {user.Email}, Password: {user.Password}");
+    }
+    private void HandleError()
+{
+    Console.WriteLine("Lỗi rồi bạn ơi");
+}
+
+
+    // Đổi giới tính
+    private void ChangeGender(object gender)
+    {
+        // chuyển đổi về bool
+        user.Gender = (bool)gender;
+    }
+    // Đổi sở thích
+    private void ChangeHobby(string hobby, object checkValue)
+    { // true , false
+      // ví dụ checkValue = false / true
+      // bool checkValueIsBool = checkValue is bool;
+      // đều đúng nếu là checkValue là true hay false
+        if (checkValue is bool b) // kiểm tra kiểu dữ liệu
+        {
+            // b lúc này là true/false
+            // kiểm tra giá trị
+            if (b)
+            {
+                // true → thêm sở thích
+                if (!user.Hobbies.Contains(hobby))
+                {
+                    // chưa có thì thêm
+                    user.Hobbies.Add(hobby);
+                }
+            }
+            else
+            {
+                // false → xóa sở thích
+                if (user.Hobbies.Contains(hobby))
+                {
+                    // có thì xóa
+                    user.Hobbies.Remove(hobby);
+                }
+            }
+        }
+
+
+    }
+
+}

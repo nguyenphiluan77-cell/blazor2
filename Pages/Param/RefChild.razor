@@ -1,0 +1,34 @@
+@using System.Runtime.InteropServices
+<div>
+    <h1>Số hiện tại là : @Number</h1>
+    @* 1. HIỂN THỊ DỮ LIỆU:
+   Hiển thị giá trị hiện tại của thuộc tính `Number`.
+*@
+</div>
+@code {
+    public int Number { get; set; } = 0;
+    /*
+      2. THUỘC TÍNH (PROPERTY):
+      Một thuộc tính public để lưu trữ con số.
+    */
+
+    public void Tang()
+    /*
+      3. PHƯƠNG THỨC PUBLIC:
+      Đây là phương thức mà component cha sẽ gọi. Nó phải là `public`
+      để bên ngoài có thể truy cập được.
+    */
+    {
+        Console.WriteLine("Tăng số");
+        Console.WriteLine("Số hiện tại là "+ Number);
+        Number++;
+        // Tăng giá trị của Number lên 1
+        StateHasChanged(); /*
+          4. CẬP NHẬT GIAO DIỆN:
+          Đây là hàm cực kỳ quan trọng của Blazor. Nó thông báo cho
+          framework rằng "trạng thái (dữ liệu) của component này đã thay đổi,
+          hãy render (vẽ) lại phần HTML của nó đi". Nếu không có dòng này,
+          `Number` vẫn tăng nhưng giao diện sẽ không hiển thị giá trị mới.
+        */
+    }
+}

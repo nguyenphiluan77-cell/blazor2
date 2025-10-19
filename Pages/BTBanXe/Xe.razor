@@ -1,0 +1,23 @@
+<div class="card text-start">
+    <img class="card-img-top" src="@carItem.ImageUrl" alt="Title" />
+    <div class="card-body">
+        <h4 class="card-title">@carItem.Name</h4>
+        <p class="card-text">@carItem.Price</p>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            @onclick="TraiNghiem">Trải nghiệm</button>
+    </div>
+    @* type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal phần này được copy từ Button trigger modal trong https://getbootstrap.com/docs/5.1/components/modal/ ( Live Demo) tạo hiệu ứng nhấn vào nút là nó sẽ hiện ra bảng  *@
+</div>
+
+@code {
+    [Parameter]
+    public CarVM carItem { get; set; }
+    [Parameter]
+    public EventCallback<CarVM> traiNghiem { get; set; }
+    private void TraiNghiem()
+    {
+        traiNghiem.InvokeAsync(carItem);
+    }
+}

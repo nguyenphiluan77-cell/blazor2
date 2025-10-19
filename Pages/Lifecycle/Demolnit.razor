@@ -1,0 +1,77 @@
+@* page router là on-init -> link trên header *@
+@page "/on-init"
+@inject HttpClient _http
+@using System.Net.Http.Json
+@using System.Text.Json
+
+<div class="container">
+    <h3>Lifecycle - On Init</h3>
+    <p>Demo về các hàm khởi tạo trong Blazor</p>
+    <button class="btn btn-primary" @onclick="LoadData">Tải dữ liệu</button>
+    <br>
+    <div class="row">
+        @foreach (var item in ls)
+        {
+            <div class="col-4">
+                <div class="card text-start">
+                    <img class="card-img-top" style="height:300px; object-fit:cover" src="@item.Img" alt="Title" />
+                    <div class="card-body">
+                        <h4 class="card-title">@item.Name</h4>
+                        <p class="card-text">@item.Price</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@code {
+    List<ProductApiVM> ls = new List<ProductApiVM>();
+    // async/ await là xử lý bất đồng bộ
+    // khi gọi hàm bất đồng bộ thì phải dùng await
+    // await chờ hàm xửa lý xong , nhưng không làm treo hệ thống
+
+    // Task : là kiểu trả về của hàm bất đồng bộ
+    // Task<T> : hàm bất đồng bộ trả về kiểu T
+    // Task : hàm bất đồng bộ không trả về gì
+    // kết quả không trả về ngay mà trả về sau khi hàm xử lý xong
+    public async Task LoadData()
+    {
+        Console.WriteLine("Load data");
+        // lấy dữ liệu từ web ai của 1 server khác
+        // dùng httpclient
+        List<ProductApiVM> data = await
+        _http.GetFromJsonAsync<List<ProductApiVM>>("https://svcy.myclass.vn/api/ProductApi/getall");
+        Console.WriteLine(JsonSerializer.Serialize(data));
+        @* http phải có await mới hoạt động được , và await và async phải đi chung với nhau và 2 thằng này là xử lý bất đồng bộ) *@
+        ls = data.Take(5).ToList();
+        @* StateHasChanged(); *@
+    }
+    public async Task LoadDataJson()
+    {
+        var data = await _http.GetFromJsonAsync<DataJsonAPI>("https://localhost:5001/data/data.json");
+        Console.WriteLine(JsonSerializer.Serialize(data));
+        lsCate = data!.Categories;
+        lsCountry = data!.Countries;
+    }
+
+
+    //cách 1 để làm nội dung hiển thị k cần load, sẽ gọi hàm này khi component được khởi tạo
+    @* protected async override void OnInitialized()
+    {
+        Console.WriteLine("On init page được gọi");
+        await LoadData();
+        await LoadDataJson();
+        StateHasChanged();// thông tháo component
+        // đã thay đổi dữ liệu
+    } *@
+    @* cách 2 để làm nội dung hiển thị k cần load  *@
+    protected async override Task OnInitializedAsync()
+    {
+        Console.WriteLine("On init page được gọi");
+        await LoadData();
+        await LoadDataJson();
+        
+    }
+    @* cách 3 là thêm StateHasChanged() lên ls = data.Take(5).ToList();  *@
+    
+}

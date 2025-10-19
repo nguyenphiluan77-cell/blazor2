@@ -1,10 +1,12 @@
 @* login có đường dẫn là localhost: xxx/login đây là trang đăng nhập *@
 @page "/login"
+<PageTitle>hihi</PageTitle>
 
 @* phần code giao diện *@
 
 <br>
-<h3>Login</h3>
+<h3 style="text-align:center" class="text-center">Login</h3>
+@* dùng style hay class đều dược, 1 trong 2 *@
 <div class="form-group">
 <label for="user name">username</label>
 <input type="text" class="from-control" id="username" placeholder="Enter username" />
@@ -14,3 +16,15 @@
 <input type="password" class="from-control" id="password" placeholder="Enter password" />
 </div>
 <button class="btn btn-primary">login</button>
+@* bs5-form-email *@
+<div class="mb-3">
+    <label for="" class="form-label">Email</label>
+    <input
+        type="email"
+        class="form-control"
+        name=""
+        id=""
+        aria-describedby="emailHelpId"
+        placeholder="abc@mail.com"
+    />
+</div>

@@ -29,6 +29,9 @@ namespace blazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             // services.AddSingleton<WeatherForecastService>();
+
+            // DI httpclient
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

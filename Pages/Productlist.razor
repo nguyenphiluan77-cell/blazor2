@@ -1,9 +1,17 @@
 @page "/product-list"
 @* danh sách nhiều sản phẩm *@
-<div class="row">
-    @foreach(ProductVM item in products)
-    {
-        @* <div class="col-3">
+@* COMPONENT PARAMETERS
+– truyền dữ liệu từ cha xuống con
+
+YÊU CẦU : viết page hiển thị câu xin chào , thông
+tin tên của bạn (component con nhận parameter
+string fullname từ cha truyền xuống) *@
+@* danh sách sản phẩm *@
+<div class="container">
+    <div class="row">
+        @foreach (ProductVM item in products)
+        {
+            @* <div class="col-3">
             <div class="card">
                 <img class="card-img-top" src="@item.ImageUrl" alt="..." />
                 <div class="card-body">
@@ -16,17 +24,34 @@
                 </div>
             </div>d
         </div> *@
-        <ProductCart item=@item/>
-    }
+            <ProductCart item="@item" AddToCartt="@AddToCart" />
+        }
+    </div>
+    @* danh sách giỏ hàng *@
+    <h3>Giỏ hàng</h3>
+    <div class="">
+        @foreach (ProductVM item in cart)
+        {
+            <p>@item.Name - @item.Price</p>
+        }
+    </div>
 </div>
-
 @code {
-    
+
 
     List<ProductVM> products = new List<ProductVM>
 {
-    new ProductVM { Name = "Product 1", Description = "Description 1", Price = 10.99m, ImageUrl = "https://via.placeholder.com/150" },
-    new ProductVM { Name = "Product 2", Description = "Description 2", Price = 12.99m, ImageUrl = "https://via.placeholder.com/150" },
-    new ProductVM { Name = "Product 3", Description = "Description 3", Price = 15.99m, ImageUrl = "https://via.placeholder.com/150" }
+new ProductVM { Name = "Product 1", Description = "Description 1", Price = 10.99m, ImageUrl =
+"/products/black-car.jpg" },
+new ProductVM { Name = "Product 2", Description = "Description 2", Price = 12.99m, ImageUrl =
+"https://via.placeholder.com/150" },
+new ProductVM { Name = "Product 3", Description = "Description 3", Price = 15.99m, ImageUrl =
+"https://via.placeholder.com/150" }
 };
+    List<ProductVM> cart = new List<ProductVM>();
+    private void AddToCart(ProductVM product)
+    {
+        cart.Add(product);
+    }
+
 }

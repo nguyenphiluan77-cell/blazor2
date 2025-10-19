@@ -1,0 +1,51 @@
+@page "/change-car-color"
+<PageTitle>ChangeCar</PageTitle>
+@* @using Microsoft.AspNetCore.Components.Web, copy dòng này từ _imorts.razor thêm vào _Host.cshtml + <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/> ở phía dưới trong _host.cshtml. để <PageTitle>ChangeCar</PageTitle> ở các component dược hoạt động  *@
+<h3>change-car-color</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <img src="products/@imgCar" alt="" class="img-fluid" />
+        </div>
+        <div class="col-6">
+            <button class="btn btn-danger m-2" @onclick="ChangeColorred">Red</button>
+            <button class="btn btn-secondary m-2" @onclick= "ChangeColorSilver">Silver</button>
+            <button class="btn btn-dark m-2" @onclick="ChangeColorblack">Black</button>
+            <button class="btn btn-primary m-2" @onclick="ChangeColorsteel">Steel</button>
+            @* cách 1 tạo từng button và gọi biến trong phần @code để đổi màu *@
+            <br>
+            @* cách 2 *@
+            @* dùng vòng lặp để hiển thị ds màu *@
+            @foreach(string item in dsColor)
+            {
+                @* Code html cho 1 button *@
+                <button class="btn btn-light m-2" @onclick="()=>ChangeColor(item)">@item</button>
+                @* khi gọi hàm thì phía sau onclick phải có () *@
+            }
+        </div>
+    </div>
+</div>
+
+@code{
+    @* ds các màu tương ứng -> chạy vòng lặp để hiển thị ra các button *@
+    private List<string> dsColor = new List<string>() { "red", "silver", "black", "steel" };
+
+    private string imgCar = "red-car.jpg";
+
+    private void ChangeColor(string color)
+    {
+        imgCar = color + "-car.jpg";
+    }
+    private void ChangeColorSilver(){
+        imgCar ="silver-car.jpg";
+    }
+    private void ChangeColorblack(){
+        imgCar ="black-car.jpg";
+    }
+    private void ChangeColorred(){
+        imgCar ="red-car.jpg";
+    }
+    private void ChangeColorsteel(){
+        imgCar ="steel-car.jpg";
+    }
+}

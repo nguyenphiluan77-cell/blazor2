@@ -1,0 +1,37 @@
+@page "/ref"
+
+<div class="container d-flex justify-content-center flex-column align-items-center">
+    @* d-flex flex-column: Biến container thành một flex container với các mục xếp chồng theo chiều dọc.
+
+align-items-center: Căn giữa các mục theo chiều ngang (trên trục ngang).
+
+justify-content-center: Căn giữa các mục theo chiều dọc (trên trục chính). *@
+    <h3>Component tham chiếu</h3>
+    <RefChild @ref="refChild" />
+    @* @ref="refChild: tham chiếu đến thằng con *@
+
+    <button class="btn btn-primary" @onclick="TangCha">Tăng</button>
+    @*
+  3 NÚT KÍCH HOẠT:
+  Nút này khi được nhấn sẽ gọi phương thức `TangCha`.
+*@
+</div>
+@code {
+    RefChild refChild;
+    /*
+      4. KHAI BÁO BIẾN THAM CHIẾU:khai báo biến tham chiếu đến component con
+      Khai báo một biến có kiểu là `RefChild` và tên là `refChild`.
+      Tên biến này PHẢI TRÙNG KHỚP với tên đã đặt trong `@ref="refChild"`.
+      
+    */
+    void TangCha()
+    {
+        refChild.Tang();
+    }
+    /*
+      5. PHƯƠNG THỨC CỦA CHA:
+      Khi nút được nhấn, phương thức này được gọi.
+      Nó truy cập vào biến `refChild` (đang giữ component con) và
+      gọi phương thức `Tang()` của component con đó.
+    */
+}
